@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <ul class="nav nav-pills nav-justified">
+    <li class="nav-item">
+      <a class="nav-link h5" href="{{ url_for('home') }}">Home</a>
+      <li class="nav-item">
+        <a class="nav-link h5" href="{{ url_for('page1') }}">Page 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link h5" href="{{ url_for('page2') }}">Page 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link h5 active" href="{{ url_for('locations') }}">Locations</a>
+      </li>
+    </li>
+  </ul>
+
+  <h1>Current Locations</h1>
+  <table>
+    <thead>
+       <tr>
+          <th>Name</th>
+          <th>City</th>
+          <th>Address</th>
+          <th>Zip Code</th>
+       </tr>
+    </thead>
+    
+    <tbody>
+       {% for location in locations %}
+          <tr>
+             <td>{{ location.name }}</td>
+             <td>{{ location.city }}</td>
+             <td>{{ location.address }}</td>
+             <td>{{ location.zip_code }}</td>
+          </tr>
+       {% endfor %}
+    </tbody>
+ </table>
+
+  <h1>Add A Location</h1>
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-2">Enter Location</legend>
+      <div class="form-group">
+        {{ form.name.label(class="form-control-label") }}
+        {% if form.name.errors %}
+          {{ form.name(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.name.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.name(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.city.label(class="form-control-label") }}
+        {% if form.city.errors %}
+          {{ form.city(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.city.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.city(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.address.label(class="form-control-label") }}
+        {% if form.address.errors %}
+          {{ form.address(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.address.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.address(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        {{ form.zip_code.label(class="form-control-label") }}
+        {% if form.zip_code.errors %}
+          {{ form.zip_code(class="form-control form-control-lg is-invalid") }}
+          <div class="invalid-feedback">
+            {% for error in form.zip_code.errors %}
+              <span>{{ error }}</span>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.zip_code(class="form-control form-control-lg") }}
+        {% endif %}
+      </div>
+    </fieldset>
+    <div class="form-group">
+      {{ form.submit(class="btn btn-outline-primary") }}
+    </div>
+    <div class="border-top pt-1">
+      <small class="text-muted">
+        Don't need to create a location? <a href="{{ url_for('home') }}">Go Home</a>
+      </small>
+    </div>
+  </form>
+{% endblock %}
