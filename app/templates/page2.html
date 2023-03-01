@@ -3,15 +3,15 @@
 {% block content %}
   <ul class="nav nav-pills nav-justified">
     <li class="nav-item">
-      <a class="nav-link h5 active" href="{{ url_for('home') }}">Home</a>
+      <a class="nav-link h5" href="{{ url_for('home') }}">Home</a>
       <li class="nav-item">
         <a class="nav-link h5" href="{{ url_for('page1') }}">Page 1</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link h5" href="{{ url_for('page2') }}">Page 2</a>
+        <a class="nav-link h5 active" href="{{ url_for('page2') }}">Page 2</a>
       </li>
     </li>
   </ul>
 
-  <h1>Welcome!</h1>
+  <h1>Page 2</h1>
 {% endblock %}
